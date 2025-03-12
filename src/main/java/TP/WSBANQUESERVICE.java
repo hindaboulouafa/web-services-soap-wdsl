@@ -1,0 +1,31 @@
+package TP;
+
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
+import jakarta.jws.WebService;
+
+import java.util.Date;
+import java.util.List;
+
+@WebService(serviceName = "jaxws")  // Corrected here
+public class WSBANQUESERVICE {
+
+    @WebMethod(operationName = "conversioneurotodh")
+    public double conversion(@WebParam(name = "montant") double mt) {
+        return mt * 11;
+    }
+
+    @WebMethod
+    public compte getcompte(@WebParam(name = "code") int code) {
+        return new compte(56, Math.random() * 6000, new Date());
+    }
+
+    @WebMethod
+    public List<compte> comptelist() {
+        return List.of(
+                new compte(1, Math.random() * 6000, new Date()),
+                new compte(2, Math.random() * 6000, new Date()),
+                new compte(3, Math.random() * 6000, new Date())
+        );
+    }
+}
